@@ -19,7 +19,7 @@ function setup(){
     (
         cd /opt
     
-        curl -O $(curl -s "http://developer.android.com/sdk/index.html" | grep -o -E 'href="([^"#]+).tgz"' | cut -d'"' -f2) | tar -zx && echo "Completed download of sdk" || {echo "Unable to download the SDK!"; exit 1;}
+        curl $(curl -s "http://developer.android.com/sdk/index.html" | grep -o -E 'href="([^"#]+).tgz"' | cut -d'"' -f2) | tar xz && echo "Completed download of sdk" || {echo "Unable to download the SDK!" ; exit 1};
     
         cd android-sdk-linux
     
