@@ -19,7 +19,7 @@ function setup(){
     (
         cd /opt
     
-        curl $(curl -s "http://developer.android.com/sdk/index.html" | grep -o -E 'href="([^"#]+).tgz"' | cut -d'"' -f2) | tar xz && echo "Completed download of sdk" || echo "Unable to download the SDK!" 
+        curl -s $(curl -s "http://developer.android.com/sdk/index.html" | grep -o -E 'href="([^"#]+).tgz"' | cut -d'"' -f2) | tar xz && echo "Completed download of sdk" || echo "Unable to download the SDK!" 
         # exit has the download did not happen
         exit 1
     
@@ -59,12 +59,12 @@ function setup(){
         site_package_path = $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
         
         # Get SLA4's android.py
-        echo -n "\n Getting SLA4's android.py to $site_package_path"
+        echo -e "\n Getting SLA4's android.py to $site_package_path"
         curl -s "http://android-scripting.googlecode.com/hg/python/ase/android.py" > $site_package_path/android.py
     )
 }
 
-echo -n "Starting the setup..."
+echo -e "Starting the setup...\n"
 setup
-echo -n "Done with the setup! import android and explore!"
+echo -e "Done with the setup! import android and explore!"
 
